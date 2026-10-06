@@ -187,7 +187,7 @@ const folioLetters = [...'FOLIO'];
       </section>
 
       <!-- Signature Stripe Divider -->
-      <div class="stripe rv" aria-hidden="true">
+      <div class="stripe stripe-trigger" aria-hidden="true">
         {stripeBars.map((bar, i) => (
           <i style={`--i: ${i}; flex: ${bar.flex}; background: ${bar.background};`}></i>
         ))}
@@ -439,7 +439,8 @@ const folioLetters = [...'FOLIO'];
   }
 
   :global(.in) .stripe i,
-  .stripe:global(.in) i {
+  .stripe:global(.in) i,
+  :global(.stripe-trigger.in) i {
     transform: none;
   }
 
@@ -821,6 +822,16 @@ const folioLetters = [...'FOLIO'];
             io.observe(el);
           }
         });
+        // Stripe bars rise on scroll into view
+        document.querySelectorAll('.stripe-trigger').forEach((el) => {
+          el.classList.remove('in');
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add('in');
+          } else {
+            io.observe(el);
+          }
+        });
       });
     });
   }
@@ -839,6 +850,25 @@ const folioLetters = [...'FOLIO'];
       };
     });
   }
+
+  // Hero parallax — image drifts down at 0.22x, title rises at 0.06x
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function hp() {
+    if (reduced) return;
+    const hv = document.getElementById('view-home');
+    if (!hv || hv.hidden) return;
+    const img = hv.querySelector<HTMLElement>('.himg img');
+    const ttl = hv.querySelector<HTMLElement>('.ttl');
+    const sy = window.scrollY;
+    if (img && sy < window.innerHeight * 1.3) {
+      img.style.translate = `0 ${Math.min(sy * 0.22, window.innerHeight * 0.15)}px`;
+    }
+    if (ttl) {
+      ttl.style.translate = `0 ${-sy * 0.06}px`;
+    }
+  }
+  window.addEventListener('scroll', hp, { passive: true });
+  hp(); // run once on load
 
   let busy = false;
 
@@ -948,7 +978,6 @@ const folioLetters = [...'FOLIO'];
 
   // Index hover cycling
   if (window.matchMedia('(hover: hover)').matches) {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let timer: number | undefined;
     let currentKey: string | null = null;
 
