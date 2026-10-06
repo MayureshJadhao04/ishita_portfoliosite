@@ -1,7 +1,426 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import imagesData from '../data/images.json';
+
+import heroImg from '../assets/images/hero/hero-1.jpg';
+import editorialImg from '../assets/images/editorial/editorial-4.jpg';
+import layoutImg from '../assets/images/layout/layout-8.jpg';
+import lumeaImg from '../assets/images/lumea/lumea-13.jpg';
+import dessertsImg from '../assets/images/desserts/desserts-25.jpg';
+
+const heroMeta = imagesData.hero[0];
+const editorialMeta = imagesData.editorial[0];
+const layoutMeta = imagesData.layout[0];
+const lumeaMeta = imagesData.lumea[0];
+const dessertsMeta = imagesData.desserts[0];
+
+const SC = ['#2a120b', '#7a2a12', '#c78a1c', '#e8b230', '#8c4a2a', '#d8c5b8', '#4a1a14', '#1b1b1b', '#a3141b'];
+const stripeBars = Array.from({ length: 64 }, (_, i) => ({
+  flex: 1 + ((i * 37) % 5),
+  background: `linear-gradient(${SC[(i * 5) % 9]}, ${SC[((i * 3 + 2) % 9)]})`,
+}));
+
+const projects = [
+  {
+    num: '01',
+    titleLine1: 'Editorial',
+    titleLine2: 'Writing',
+    href: '#editorial',
+    img: editorialImg,
+    meta: editorialMeta,
+  },
+  {
+    num: '02',
+    titleLine1: 'Layout',
+    titleLine2: 'Design',
+    href: '#layout',
+    img: layoutImg,
+    meta: layoutMeta,
+  },
+  {
+    num: '03',
+    titleLine1: 'Branding',
+    titleLine2: 'Lumea',
+    href: '#lumea',
+    img: lumeaImg,
+    meta: lumeaMeta,
+  },
+  {
+    num: '04',
+    titleLine1: 'Visual',
+    titleLine2: 'Identity',
+    href: '#desserts',
+    img: dessertsImg,
+    meta: dessertsMeta,
+  },
+];
+
+const bioText = "Hi, I’m Ishita, and I love to create, research, and explore every form of art and design. Photography, travelling, and architecture are my favourite forms of art. I love to research trends, study fashion, create graphics, write, and build brand identities. I am currently in my fourth year of communication design in fashion, and I continue to learn, explore, and create every single day. This portfolio aims to showcase everything I love to do in this creative realm I am in.";
 ---
 
-<Layout>
-	<h1>Ishita Yadav</h1>
+<Layout title="Ishita Yadav — Portfolio 2026">
+  <header>
+    <a href="#home">Ishita Yadav</a>
+    <span>Portfolio 2026</span>
+  </header>
+
+  <main id="app">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="himg">
+        <Image
+          src={heroImg}
+          width={heroMeta.width}
+          height={heroMeta.height}
+          alt={heroMeta.alt}
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+      <div class="ttl disp">
+        <span class="by">By Ishita Yadav</span>
+        <span class="ln">PORT</span>
+        <span class="ln">FOLIO</span>
+      </div>
+    </section>
+
+    <!-- Signature Stripe Divider -->
+    <div class="stripe" aria-hidden="true">
+      {stripeBars.map((bar) => (
+        <i style={`flex: ${bar.flex}; background: ${bar.background};`}></i>
+      ))}
+    </div>
+
+    <!-- About Section -->
+    <section class="intro" id="about">
+      <h2 class="disp">A brief<br />intro<br />about me</h2>
+      <div>
+        <div class="kick">4th year · Communication Design in Fashion</div>
+        <p>{bioText}</p>
+        <div class="about-resume-wrap">
+          <a href="/resume/Ishita-Yadav-Resume.pdf" target="_blank" rel="noopener noreferrer" class="about-resume-link">
+            View Résumé ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Index -->
+    <section id="idx" class="dim">
+      {projects.map((proj) => (
+        <a class="row" href={proj.href} data-k={proj.href.replace('#', '')}>
+          <span class="n">{proj.num}</span>
+          <span class="t disp">
+            {proj.titleLine1}
+            <br />
+            {proj.titleLine2}
+          </span>
+          <span class="s">
+            <Image
+              src={proj.img}
+              width={proj.meta.width}
+              height={proj.meta.height}
+              alt={proj.meta.alt}
+              loading="lazy"
+              decoding="async"
+            />
+            <em>View project →</em>
+          </span>
+        </a>
+      ))}
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-wrap">
+        <div>
+          <span>Contact: </span>
+          <a href="mailto:ishita.yadav@example.com" class="footer-link">email@domain.com</a>
+          <span> · </span>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a>
+          <span> · </span>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+        </div>
+        <div>
+          <a href="/resume/Ishita-Yadav-Resume.pdf" target="_blank" rel="noopener noreferrer" class="footer-link">
+            Download Résumé ↓
+          </a>
+        </div>
+      </div>
+    </footer>
+  </main>
 </Layout>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    padding: calc(14px + env(safe-area-inset-top, 0px)) 22px 14px;
+    color: #fff;
+    mix-blend-mode: difference;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+
+  .hero {
+    min-height: 100svh;
+    display: grid;
+    grid-template-rows: 62svh 1fr;
+    position: relative;
+  }
+
+  .himg {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .himg :global(img) {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 125%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(1) contrast(1.05);
+  }
+
+  .ttl {
+    align-self: end;
+    text-align: right;
+    padding: 0 22px 22px;
+    color: var(--acc);
+    font-size: clamp(64px, 16vw, 230px);
+    line-height: 0.84;
+    letter-spacing: -0.03em;
+    position: relative;
+  }
+
+  .ln {
+    display: block;
+    overflow: hidden;
+    padding-top: 0.05em;
+  }
+
+  .by {
+    position: absolute;
+    left: 22px;
+    bottom: 22px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: var(--acc);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+
+  .stripe {
+    display: flex;
+    gap: 3px;
+    height: 96px;
+    filter: blur(0.6px);
+    margin: 56px 22px 0;
+  }
+
+  .stripe i {
+    display: block;
+    height: 100%;
+  }
+
+  .intro {
+    display: grid;
+    grid-template-columns: 5fr 6fr;
+    gap: clamp(24px, 6vw, 100px);
+    padding: 64px 22px 110px;
+    align-items: end;
+  }
+
+  .intro > div {
+    border-top: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+    padding-top: 20px;
+  }
+
+  .intro h2 {
+    margin: 0;
+    font-size: clamp(40px, 6.4vw, 100px);
+    line-height: 0.92;
+    color: var(--acc);
+    text-align: left;
+  }
+
+  .kick {
+    text-transform: uppercase;
+    font-size: 11px;
+    color: var(--mut);
+    margin-bottom: 18px;
+    letter-spacing: 0.05em;
+  }
+
+  .intro p {
+    max-width: 50ch;
+    margin: 0;
+    font-size: clamp(16px, 1.55vw, 21px);
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
+
+  .about-resume-wrap {
+    margin-top: 24px;
+  }
+
+  .about-resume-link {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--acc);
+    display: inline-flex;
+    align-items: center;
+    border-bottom: 1px solid var(--acc);
+    padding-bottom: 2px;
+  }
+
+  .about-resume-link:hover {
+    opacity: 0.75;
+  }
+
+  #idx {
+    display: block;
+  }
+
+  .row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 56px 1fr minmax(0, 38vw);
+    align-items: center;
+    gap: 16px;
+    padding: 22px;
+    border-top: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .row:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -1px;
+    height: 1px;
+    width: 100%;
+    background: var(--acc);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.7s cubic-bezier(0.7, 0, 0.2, 1);
+  }
+
+  .row:hover:before {
+    transform: scaleX(1);
+  }
+
+  .row .n {
+    color: var(--mut);
+    font-size: 12px;
+    transition: color 0.3s;
+  }
+
+  .row:hover .n {
+    color: var(--acc);
+  }
+
+  .row .t {
+    font-size: clamp(30px, 6.4vw, 92px);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.3s;
+  }
+
+  .row:hover .t {
+    transform: translateX(22px);
+    color: var(--acc);
+  }
+
+  .row .s {
+    position: relative;
+    height: clamp(70px, 11vw, 150px);
+    overflow: hidden;
+  }
+
+  .s :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .row:hover .s :global(img) {
+    transform: scale(1.05);
+  }
+
+  .s em {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--acc);
+    padding: 4px 10px;
+  }
+
+  footer {
+    border-top: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+    padding: 40px 22px 60px;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: var(--mut);
+  }
+
+  .footer-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-link {
+    transition: color 0.2s ease;
+  }
+
+  .footer-link:hover {
+    color: var(--acc);
+  }
+
+  @media (max-width: 700px) {
+    .intro {
+      grid-template-columns: 1fr;
+    }
+
+    .intro h2 {
+      order: 0;
+      text-align: left;
+    }
+
+    .row {
+      grid-template-columns: 34px 1fr 30vw;
+      padding: 18px 14px;
+    }
+
+    .footer-wrap {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
+</style>

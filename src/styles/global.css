@@ -1,1 +1,90 @@
 @import "tailwindcss";
+
+:root {
+  --bg: #f6f3ee;
+  --ink: #17110f;
+  --acc: #a3141b;
+  --mut: #6b625c;
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #150a07;
+    --ink: #efe6dc;
+    --acc: #e0453f;
+    --mut: #9a8d83;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #150a07;
+  --ink: #efe6dc;
+  --acc: #e0453f;
+  --mut: #9a8d83;
+}
+
+:root[data-project="editorial"] {
+  --bg: #f4f1ec;
+  --ink: #17110f;
+  --acc: #a3141b;
+  --mut: #6b625c;
+}
+
+:root[data-project="layout"] {
+  --bg: #6e0f1a;
+  --ink: #f5ead3;
+  --acc: #f2b01e;
+  --mut: #d9a8a0;
+}
+
+:root[data-project="lumea"] {
+  --bg: #2d150e;
+  --ink: #f1e6dc;
+  --acc: #d3b196;
+  --mut: #a68f80;
+}
+
+:root[data-project="desserts"] {
+  --bg: #1f0e09;
+  --ink: #d8c5b8;
+  --acc: #9aa77a;
+  --mut: #8d7b6e;
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 12px;
+  line-height: 1.7;
+  letter-spacing: 0.05em;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.disp {
+  font-family: 'Bodoni Moda', 'Didot', Georgia, serif;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.script {
+  font-family: 'Pinyon Script', cursive;
+}
