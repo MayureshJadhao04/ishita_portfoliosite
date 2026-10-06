@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- REFERENCE ONLY: approved look and behaviour. Images are placeholders. Rebuild in Astro; do not copy as-is. -->
+<title>Ishita Yadav — Portfolio 2026</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;600&family=Inter:wght@400;500&family=Pinyon+Script&display=swap">
+<style>
+:root{--bg:#f6f3ee;--ink:#17110f;--acc:#a3141b;--mut:#6b625c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#150a07;--ink:#efe6dc;--acc:#e0453f;--mut:#9a8d83}}
+:root[data-theme="dark"]{--bg:#150a07;--ink:#efe6dc;--acc:#e0453f;--mut:#9a8d83}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:12px/1.7 Inter,"Helvetica Neue",Arial,sans-serif;letter-spacing:.05em;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.disp{font-family:"Bodoni Moda","Didot",Georgia,serif;text-transform:uppercase;font-weight:500}
+header{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;padding:calc(14px + env(safe-area-inset-top,0px)) 22px 14px;color:#fff;mix-blend-mode:difference;text-transform:uppercase;font-size:11px}
+#bars{position:fixed;inset:0;display:flex;z-index:9;pointer-events:none}
+#bars i{flex:1;display:block;transform:scaleY(0)}
+.hero{min-height:100svh;display:grid;grid-template-rows:62svh 1fr;position:relative}
+.himg{overflow:hidden;position:relative}
+.himg img{position:absolute;left:0;bottom:0;width:100%;height:125%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.05);animation:scan 1.8s cubic-bezier(.7,0,.2,1) both}
+.himg:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,var(--bg) 0 2px,transparent 2px 4px);animation:fade 2.4s .2s forwards}
+@keyframes scan{from{clip-path:inset(0 0 100% 0);transform:scale(1.1)}to{clip-path:inset(0);transform:none}}
+@keyframes fade{to{opacity:0}}
+.ttl{align-self:end;text-align:right;padding:0 22px 22px;color:var(--acc);font-size:clamp(64px,16vw,230px);line-height:.84;letter-spacing:-.03em;position:relative}
+.ln{display:block;overflow:hidden;padding-top:.05em}
+.l{display:inline-block;transform:translateY(110%);animation:up .95s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(.5s + var(--d)*70ms)}
+@keyframes up{to{transform:none}}
+.ttl small{position:absolute;right:22px;bottom:22px;font:11px/1.3 Inter,sans-serif;letter-spacing:.1em;transform:translateX(100%);display:none}
+.by{position:absolute;left:22px;bottom:22px;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--acc);font-size:10px;text-transform:uppercase;letter-spacing:.2em}
+.stripe{display:flex;gap:3px;height:96px;filter:blur(.6px);margin:56px 22px 0}
+.stripe i{display:block;transform:scaleY(0);transform-origin:bottom;transition:transform 1.1s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i)*22ms)}
+.in .stripe i,.stripe.in i{transform:none}
+.intro{display:grid;grid-template-columns:5fr 6fr;gap:clamp(24px,6vw,100px);padding:64px 22px 110px;align-items:end}.intro>div{border-top:1px solid color-mix(in srgb,var(--ink) 25%,transparent);padding-top:20px}
+.intro h2{margin:0;font-size:clamp(40px,6.4vw,100px);line-height:.92;color:var(--acc);text-align:left}
+.intro p{max-width:50ch;margin:0;font-size:clamp(16px,1.55vw,21px);line-height:1.6;letter-spacing:.01em;text-transform:none}
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1s,transform 1s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.row{display:grid;grid-template-columns:56px 1fr minmax(0,34vw);align-items:center;gap:16px;padding:22px;border-top:1px solid color-mix(in srgb,var(--ink) 25%,transparent);cursor:pointer}
+.row .n{color:var(--mut)}
+.row .t{font-size:clamp(30px,6.4vw,92px);line-height:.9;transition:transform .5s cubic-bezier(.2,.8,.2,1),color .3s}
+.row:hover .t{transform:translateX(18px);color:var(--acc)}
+.row .s{height:clamp(56px,9vw,124px);overflow:hidden;clip-path:inset(0 100% 0 0);transition:clip-path .75s cubic-bezier(.7,0,.2,1)}
+.row:hover .s{clip-path:inset(0)}
+.s img{width:100%;height:100%;object-fit:cover;display:block}
+@media(hover:none){.row .s{clip-path:inset(0)}}
+footer{border-top:1px solid color-mix(in srgb,var(--ink) 25%,transparent);padding:40px 22px 60px;text-transform:uppercase;font-size:11px;color:var(--mut)}
+.pv{padding:calc(96px + env(safe-area-inset-top,0px)) 22px 60px}
+.kick{text-transform:uppercase;font-size:11px;color:var(--mut)}
+.big{font-family:"Pinyon Script","Snell Roundhand",cursive;font-size:clamp(60px,14vw,220px);line-height:1.1;color:var(--acc);margin:8px 0 0;clip-path:inset(-20% 100% -20% 0);animation:wipe 1.3s .55s cubic-bezier(.7,0,.2,1) forwards}
+@keyframes wipe{to{clip-path:inset(-20% -10% -20% 0)}}
+.txt{max-width:54ch;margin:20px 0 52px auto;text-transform:uppercase;font-size:11px}
+.g{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.g figure{margin:0;overflow:hidden;grid-column:span 6}
+.g figure:nth-child(3n+1){grid-column:span 12}
+.g img{width:100%;display:block;transform:scale(1.15)}
+.next{display:block;margin-top:90px;text-align:right}
+.next b{display:block;font:400 clamp(44px,10vw,150px)/1.1 "Pinyon Script",cursive;color:var(--acc);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.next:hover b{transform:translateX(-18px)}
+@media(max-width:700px){.intro{grid-template-columns:1fr}.intro h2{order:0;text-align:left}.row{grid-template-columns:34px 1fr 30vw;padding:18px 14px}.g figure,.g figure:nth-child(3n+1){grid-column:span 12}.txt{margin-left:0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv,.l,.stripe i{opacity:1;transform:none}.big{clip-path:none}.himg:after{display:none}.g figure.rv{clip-path:none}}
+.g{perspective:1100px}.g figure.rv{opacity:1;transform:none;clip-path:inset(0 0 100% 0);transition:clip-path 1.3s cubic-bezier(.7,0,.2,1),rotate .5s ease-out,scale .5s ease-out}.g figure.rv.in{clip-path:inset(0)}
+.row{position:relative;grid-template-columns:56px 1fr minmax(0,var(--sw))}
+.row:before{content:"";position:absolute;left:0;top:-1px;height:1px;width:100%;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.7,0,.2,1)}
+.row:hover:before{transform:scaleX(1)}.row:hover .n{color:var(--acc)}.row:hover .t{transform:translateX(var(--shift))}
+.row .s{position:relative;height:var(--sh)}
+.s img{position:absolute;inset:0;opacity:0;transition:opacity .6s,transform 1.4s cubic-bezier(.2,.8,.2,1)}.s img.on{opacity:1;transform:scale(1.07)}
+.s em{position:absolute;left:0;bottom:0;z-index:2;font-style:normal;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--acc);padding:4px 10px}
+#idx .row{transition:opacity .4s,transform 1s cubic-bezier(.2,.8,.2,1)}#idx.dim:hover .row:not(:hover){opacity:var(--dimo)}
+@media(hover:none){.s img:first-child{opacity:1}.s em{display:none}}
+@media(hover:hover){body[data-hm="float"] .row .s{display:none}body[data-hm="float"] .row{grid-template-columns:56px 1fr}}
+@media(max-width:700px){.row{grid-template-columns:34px 1fr 30vw}}
+.fl{position:fixed;left:0;top:0;aspect-ratio:4/3;pointer-events:none;z-index:6;overflow:hidden;opacity:0;scale:.6;transition:opacity .35s,scale .5s cubic-bezier(.2,.8,.2,1)}.fl.on{opacity:1;scale:1}.fl img{width:100%;height:100%;object-fit:cover;display:block}
+</style></head><body>
+<header><a href="#home">Ishita Yadav</a><span id="cur">Portfolio 2026</span></header>
+<div id="bars"></div><main id="app"></main>
+<script>
+const IMG={hero:"IMAGE_PLACEHOLDER",ed1:"IMAGE_PLACEHOLDER",ed2:"IMAGE_PLACEHOLDER",ed3:"IMAGE_PLACEHOLDER",ed4:"IMAGE_PLACEHOLDER",la1:"IMAGE_PLACEHOLDER",la2:"IMAGE_PLACEHOLDER",la3:"IMAGE_PLACEHOLDER",la4:"IMAGE_PLACEHOLDER",lu1:"IMAGE_PLACEHOLDER",lu2:"IMAGE_PLACEHOLDER",lu3:"IMAGE_PLACEHOLDER",lu4:"IMAGE_PLACEHOLDER",lu5:"IMAGE_PLACEHOLDER",lu6:"IMAGE_PLACEHOLDER",lu7:"IMAGE_PLACEHOLDER",lu8:"IMAGE_PLACEHOLDER",lu9:"IMAGE_PLACEHOLDER",lu10:"IMAGE_PLACEHOLDER",lu11:"IMAGE_PLACEHOLDER",de1:"IMAGE_PLACEHOLDER",de2:"IMAGE_PLACEHOLDER",de3:"IMAGE_PLACEHOLDER",de4:"IMAGE_PLACEHOLDER",de5:"IMAGE_PLACEHOLDER",de6:"IMAGE_PLACEHOLDER",de7:"IMAGE_PLACEHOLDER",de8:"IMAGE_PLACEHOLDER",de9:"IMAGE_PLACEHOLDER",de10:"IMAGE_PLACEHOLDER",de11:"IMAGE_PLACEHOLDER"};
+const P={
+editorial:{n:'01',name:'Editorial Writing',idx:'Editorial<br>Writing',script:'Editorial Writing',imgs:['ed1','ed2','ed3','ed4'],cols:['#f6f3ee','#a3141b','#17110f','#d9d2c7'],v:{'--bg':'#f4f1ec','--ink':'#17110f','--acc':'#a3141b','--mut':'#6b625c'},txt:'Placeholder copy: spreads on street style, self-expression and experimental fashion from the CULTURE zine. Her own project text goes here.'},
+layout:{n:'02',name:'Layout Design',idx:'Layout<br>Design',script:'Dastak',imgs:['la1','la2','la3','la4'],cols:['#6e0f1a','#f2b01e','#1230c8','#f5ead3','#17110f'],v:{'--bg':'#6e0f1a','--ink':'#f5ead3','--acc':'#f2b01e','--mut':'#d9a8a0'},txt:'DASTAK — The City Magazine is a visual exploration of architecture and the stories embedded within Indian cities. A series of covers shaped by photographs of Bombay, Rajasthan, Agra and Kochi, each with its own character under one consistent identity.'},
+lumea:{n:'03',name:'Branding',idx:'Branding<br>Lumea',script:'Lumea',imgs:['lu1','lu2','lu3','lu4','lu5','lu6','lu7','lu8','lu9','lu10','lu11'],cols:['#2d150e','#5b3326','#9c7458','#d8c5b8'],v:{'--bg':'#2d150e','--ink':'#f1e6dc','--acc':'#d3b196','--mut':'#a68f80'},txt:'Lumea is a homegrown scented candle brand inspired by mindfulness, emotional wellness and slow living. Derived from “lume”, light, it stands for warmth, serenity and quiet luxury.'},
+desserts:{n:'04',name:'Branding & Visual Identity',idx:'Visual<br>Identity',script:'City of Desserts',imgs:['de1','de2','de3','de4','de5','de6','de7','de8','de9','de10','de11'],cols:['#1f0e09','#412b20','#522d1d','#8a9a6b','#d8c5b8'],v:{'--bg':'#1f0e09','--ink':'#d8c5b8','--acc':'#9aa77a','--mut':'#8d7b6e'},txt:'A one-stop destination for desserts from across India and around the world: Jalebi, Payasam, Rasmalai, Ghewar beside cheesecake, tiramisu and brownies, in one contemporary dessert house.'}};
+/* ===== CONFIG: edit these to customise the site (see MOTION-SPEC.md) ===== */
+const CONFIG={hover:{mode:'strip',/* 'strip' | 'float' | 'both' */images:3,cycleMs:1000,label:'View project →',stripWidth:'38vw',stripHeight:'clamp(70px,11vw,150px)',dimOthers:true,dimOpacity:.3,titleShift:22,flood:false,floatWidth:'min(30vw,380px)',floatLag:.12,floatTilt:.08,floatOffset:[30,-80]}};
+const H=CONFIG.hover;{const d=document.documentElement.style;d.setProperty('--sw',H.stripWidth);d.setProperty('--sh',H.stripHeight);d.setProperty('--dimo',H.dimOpacity);d.setProperty('--shift',H.titleShift+'px')}
+const O=['editorial','layout','lumea','desserts'],HC=['#a3141b','#17110f','#e8a317','#6b2a14','#d8c5b8'];
+const $=s=>document.querySelector(s),R=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const SC=['#2a120b','#7a2a12','#c78a1c','#e8b230','#8c4a2a','#d8c5b8','#4a1a14','#1b1b1b','#a3141b'];
+const stripe=n=>`<div class="stripe rv">${Array.from({length:n},(_,i)=>`<i style="--i:${i};flex:${1+i*37%5};background:linear-gradient(${SC[i*5%9]},${SC[(i*3+2)%9]})"></i>`).join('')}</div>`;
+const letters=(w,o)=>[...w].map((c,i)=>`<span class="l" style="--d:${i+o}">${c}</span>`).join('');
+const BIO="Hi, I’m Ishita, and I love to create, research, and explore every form of art and design. Photography, travelling, and architecture are my favourite forms of art. I love to research trends, study fashion, create graphics, write, and build brand identities. I am currently in my fourth year of communication design in fashion, and I continue to learn, explore, and create every single day. This portfolio aims to showcase everything I love to do in this creative realm I am in.";
+const home=()=>`<section class="hero"><div class="himg"><img src="${IMG.hero}" alt=""></div><div class="ttl disp"><span class="by">By Ishita Yadav</span><span class="ln">${letters('PORT',0)}</span><span class="ln">${letters('FOLIO',4)}</span></div></section>
+${stripe(64)}<section class="intro"><h2 class="disp rv">A brief<br>intro<br>about me</h2><div><div class="kick rv" style="margin-bottom:18px">4th year · Communication Design in Fashion</div><p class="rv">${BIO}</p></div></section>
+<section id="idx" class="${H.dimOthers?'dim':''}">${O.map(k=>{const hk=(P[k].hover||P[k].imgs).slice(0,H.images);return `<a class="row rv" href="#${k}" data-k="${k}"><span class="n">${P[k].n}</span><span class="t disp">${P[k].idx}</span><span class="s">${hk.map((i,j)=>`<img class="${j?'':'on'}" src="${IMG[i]}" alt="">`).join('')}<em>${H.label}</em></span></a>`}).join('')}</section>
+<footer>Contact: email · Instagram · LinkedIn (to be added)</footer>`;
+const proj=k=>{const p=P[k],nx=P[O[(O.indexOf(k)+1)%4]];return `<section class="pv"><div class="kick">${p.n} — ${p.name}</div><h1 class="big">${p.script}</h1><p class="txt rv">${p.txt}</p><div class="g">${p.imgs.map((i,j)=>`<figure class="rv"><img data-par src="${IMG[i]}" alt="${p.name} — ${p.script}, image ${j+1}"></figure>`).join('')}</div><a class="next rv" href="#${O[(O.indexOf(k)+1)%4]}"><span class="kick">Next project</span><b>${nx.script}</b></a></section>`};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+const par=()=>document.querySelectorAll('[data-par]').forEach(im=>{const r=im.parentElement.getBoundingClientRect();im.style.transform=`translateY(${(r.top+r.height/2-innerHeight/2)*-.07}px) scale(1.15)`});
+function hp(){const i=$('.himg img'),t=$('.ttl');if(i&&scrollY<innerHeight*1.3){i.style.translate=`0 ${Math.min(scrollY*.22,innerHeight*.15)}px`;t.style.translate=`0 ${-scrollY*.06}px`}}
+function tilt(){if(!matchMedia('(hover:hover)').matches||R)return;document.querySelectorAll('.g figure').forEach(f=>{f.onmousemove=e=>{const r=f.getBoundingClientRect();f.style.rotate=`0 1 0 ${((e.clientX-r.left)/r.width-.5)*8}deg`;f.style.scale='1.02'};f.onmouseleave=()=>{f.style.rotate='';f.style.scale=''}})}
+addEventListener('scroll',()=>{par();hp()},{passive:true});
+function render(k){const p=P[k],d=document.documentElement.style;['--bg','--ink','--acc','--mut'].forEach(v=>p?d.setProperty(v,p.v[v]):d.removeProperty(v));
+$('#app').innerHTML=p?proj(k):home();$('#cur').textContent=p?p.n+' / '+p.name:'Portfolio 2026';scrollTo(0,0);document.querySelectorAll('.rv,.ph').forEach(e=>io.observe(e));par();hp();tilt()}
+let busy=false;
+function go(k){const cols=P[k]?P[k].cols:HC;if(R){render(k);return}
+busy=true;const b=$('#bars');b.innerHTML=Array.from({length:16},(_,i)=>`<i style="background:${cols[i%cols.length]};transform-origin:bottom"></i>`).join('');
+const e=[...b.children],o={duration:600,easing:'cubic-bezier(.7,0,.2,1)',fill:'forwards'},dl=i=>(i*7%16)*26;
+Promise.all(e.map((x,i)=>x.animate([{transform:'scaleY(0)'},{transform:'scaleY(1)'}],{...o,delay:dl(i)}).finished)).then(()=>{render(k);e.forEach(x=>x.style.transformOrigin='top');
+return Promise.all(e.map((x,i)=>x.animate([{transform:'scaleY(1)'},{transform:'scaleY(0)'}],{...o,delay:dl(i)+120}).finished))}).then(()=>{b.innerHTML='';busy=false})}
+const key=()=>location.hash.slice(1);
+addEventListener('hashchange',()=>{go(key());window.hoverOff&&hoverOff()});
+render(key());
+if(matchMedia('(hover:hover)').matches){document.body.dataset.hm=H.mode;
+const fm=H.mode!='strip';let f=null,fi=null,cur=null,tm=0,x=0,y=0,tx=0,ty=0;
+if(fm){document.body.insertAdjacentHTML('beforeend','<div class="fl"><img alt=""></div>');f=$('.fl');fi=f.firstChild;f.style.width=H.floatWidth;
+addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY});
+(function l(){const dx=tx-x;x+=dx*H.floatLag;y+=(ty-y)*H.floatLag;f.style.transform=`translate(${x+H.floatOffset[0]}px,${y+H.floatOffset[1]}px)`;f.style.rotate=Math.max(-14,Math.min(14,dx*H.floatTilt))+'deg';requestAnimationFrame(l)})()}
+const set=k=>{const d=document.documentElement.style;['--bg','--ink','--acc','--mut'].forEach(v=>k?d.setProperty(v,P[k].v[v]):d.removeProperty(v))};
+const off=()=>{clearInterval(tm);document.querySelectorAll('.row .s img').forEach(m=>m.classList.toggle('on',m===m.parentElement.firstElementChild));f&&f.classList.remove('on');cur=null};
+window.hoverOff=off;
+document.addEventListener('mouseover',e=>{const r=e.target.closest('.row'),k=r&&r.dataset.k;if(k===cur)return;off();if(!k){if(H.flood&&!P[key()])set(null);return}
+cur=k;const im=[...r.querySelectorAll('.s img')];let i=0;const show=()=>{im.forEach((m,j)=>m.classList.toggle('on',j==i));if(fm)fi.src=im[i].src};show();if(fm)f.classList.add('on');if(H.flood)set(k);
+if(im.length>1&&!R)tm=setInterval(()=>{i=(i+1)%im.length;show()},H.cycleMs)})}
+</script></body></html>
