@@ -150,7 +150,10 @@ const folioLetters = [...'FOLIO'];
 
 <Layout title="Ishita Yadav — Portfolio 2026">
   <header>
-    <a href="#home">Ishita Yadav</a>
+    <a href="#home" class="brand-link" id="brand-link">
+      <span class="back-arrow" aria-hidden="true">←</span>
+      <span>Ishita Yadav</span>
+    </a>
     <span id="cur">Portfolio 2026</span>
   </header>
 
@@ -300,6 +303,39 @@ const folioLetters = [...'FOLIO'];
     text-transform: uppercase;
     font-size: 11px;
     letter-spacing: 0.05em;
+  }
+
+  .brand-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .back-arrow {
+    display: inline-block;
+    opacity: 0;
+    max-width: 0;
+    transform: translateX(4px);
+    overflow: hidden;
+    white-space: nowrap;
+    transition: opacity 0.25s ease, max-width 0.25s ease, transform 0.25s ease;
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  :global(:root[data-project]) .back-arrow {
+    opacity: 1;
+    max-width: 18px;
+    transform: translateX(0);
+  }
+
+  @media (hover: hover) {
+    :global(:root[data-project]) .brand-link:hover .back-arrow {
+      transform: translateX(-3px);
+    }
   }
 
   #bars {
@@ -891,6 +927,7 @@ const folioLetters = [...'FOLIO'];
     const homeView = document.getElementById('view-home');
     const projViews = document.querySelectorAll<HTMLElement>('.proj-view');
     const curSpan = document.getElementById('cur');
+    const brandLink = document.getElementById('brand-link');
 
     if (isProj) {
       if (homeView) homeView.hidden = true;
@@ -902,6 +939,10 @@ const folioLetters = [...'FOLIO'];
       if (curSpan && d) {
         curSpan.textContent = `${d.num} / ${d.name}`;
       }
+      if (brandLink) {
+        brandLink.setAttribute('aria-label', 'Back to home');
+        brandLink.setAttribute('title', 'Back to home');
+      }
     } else {
       if (homeView) homeView.hidden = false;
       projViews.forEach((pv) => {
@@ -910,6 +951,10 @@ const folioLetters = [...'FOLIO'];
       delete document.documentElement.dataset.project;
       if (curSpan) {
         curSpan.textContent = 'Portfolio 2026';
+      }
+      if (brandLink) {
+        brandLink.removeAttribute('aria-label');
+        brandLink.removeAttribute('title');
       }
     }
 
