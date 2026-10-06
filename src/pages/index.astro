@@ -253,7 +253,6 @@ const folioLetters = [...'FOLIO'];
                   alt={im.alt}
                   loading="lazy"
                   decoding="async"
-                  data-par
                 />
               </figure>
             ))}
@@ -644,7 +643,6 @@ const folioLetters = [...'FOLIO'];
 
   .g figure {
     margin: 0;
-    overflow: hidden;
     grid-column: span 6;
   }
 
@@ -656,8 +654,6 @@ const folioLetters = [...'FOLIO'];
     width: 100%;
     height: auto;
     display: block;
-    transform: scale(1.15);
-    transition: transform 0.2s ease-out;
   }
 
   .next {
@@ -688,16 +684,6 @@ const folioLetters = [...'FOLIO'];
     transform: none !important;
   }
 
-  .g figure:global(.rv) {
-    opacity: 1;
-    transform: none;
-    clip-path: inset(0 0 100% 0);
-    transition: clip-path 1.3s cubic-bezier(0.7, 0, 0.2, 1), rotate 0.5s ease-out, scale 0.5s ease-out;
-  }
-
-  .g figure:global(.rv.in) {
-    clip-path: inset(0) !important;
-  }
 
   footer {
     border-top: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
@@ -782,7 +768,6 @@ const folioLetters = [...'FOLIO'];
 
     .rv,
     .big,
-    .g figure:global(.rv),
     .stripe i {
       opacity: 1 !important;
       transform: none !important;
@@ -820,38 +805,40 @@ const folioLetters = [...'FOLIO'];
   );
 
   function initObservers() {
+    // Remove .in from all rv elements to reset
     document.querySelectorAll('.rv').forEach((el) => {
       el.classList.remove('in');
-      io.observe(el);
+    });
+    // Let DOM paint after hidden->visible switch, then observe
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.querySelectorAll('.rv').forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          // Immediately reveal elements already in viewport
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add('in');
+          } else {
+            io.observe(el);
+          }
+        });
+      });
     });
   }
 
   function initTilt() {
     if (!window.matchMedia('(hover: hover)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     document.querySelectorAll<HTMLElement>('.g figure').forEach((f) => {
+      f.style.transition = 'rotate 0.35s ease-out';
       f.onmousemove = (e) => {
         const r = f.getBoundingClientRect();
-        f.style.rotate = `0 1 0 ${((e.clientX - r.left) / r.width - 0.5) * 8}deg`;
-        f.style.scale = '1.02';
+        const normX = (e.clientX - r.left) / r.width - 0.5;
+        f.style.rotate = `0 1 0 ${normX * 2}deg`;
       };
       f.onmouseleave = () => {
-        f.style.rotate = '';
-        f.style.scale = '';
+        f.style.rotate = '0deg';
       };
     });
   }
-
-  const par = () => {
-    document.querySelectorAll<HTMLElement>('[data-par]').forEach((im) => {
-      const parent = im.parentElement;
-      if (!parent) return;
-      const r = parent.getBoundingClientRect();
-      if (r.bottom > 0 && r.top < window.innerHeight) {
-        im.style.transform = `translateY(${(r.top + r.height / 2 - window.innerHeight / 2) * -0.07}px) scale(1.15)`;
-      }
-    });
-  };
-  window.addEventListener('scroll', par, { passive: true });
 
   let busy = false;
 
@@ -885,7 +872,17 @@ const folioLetters = [...'FOLIO'];
     window.scrollTo(0, 0);
     initObservers();
     initTilt();
-    par();
+
+    // Restart .big wipe animation
+    requestAnimationFrame(() => {
+      const big = document.querySelector<HTMLElement>('.proj-view:not([hidden]) .big');
+      if (big) {
+        big.style.animation = 'none';
+        // Trigger reflow
+        void big.offsetWidth;
+        big.style.animation = '';
+      }
+    });
   }
 
   function go(k: string) {
