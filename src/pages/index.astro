@@ -88,6 +88,8 @@ const projectPages = [
     txt: 'Spreads on street style, self-expression and experimental fashion from the CULTURE zine.',
     nextId: 'layout',
     nextScript: 'Dastak',
+    prevId: 'desserts',
+    prevScript: 'City of Desserts',
     images: imagesData.editorial.map((item) => ({
       src: allImages[`../assets/images/editorial/${item.file}`].default,
       width: item.width,
@@ -103,6 +105,8 @@ const projectPages = [
     txt: 'DASTAK — The City Magazine is a visual exploration of architecture and the stories embedded within Indian cities. A series of covers shaped by photographs of Bombay, Rajasthan, Agra and Kochi, each with its own character under one consistent identity.',
     nextId: 'lumea',
     nextScript: 'Lumea',
+    prevId: 'editorial',
+    prevScript: 'Editorial Writing',
     images: imagesData.layout.map((item) => ({
       src: allImages[`../assets/images/layout/${item.file}`].default,
       width: item.width,
@@ -118,6 +122,8 @@ const projectPages = [
     txt: 'Lumea is a homegrown scented candle brand inspired by mindfulness, emotional wellness and slow living. Derived from “lume”, light, it stands for warmth, serenity and quiet luxury.',
     nextId: 'desserts',
     nextScript: 'City of Desserts',
+    prevId: 'layout',
+    prevScript: 'Dastak',
     images: imagesData.lumea.map((item) => ({
       src: allImages[`../assets/images/lumea/${item.file}`].default,
       width: item.width,
@@ -133,6 +139,8 @@ const projectPages = [
     txt: 'A one-stop destination for desserts from across India and around the world: Jalebi, Payasam, Rasmalai, Ghewar beside cheesecake, tiramisu and brownies, in one contemporary dessert house.',
     nextId: 'editorial',
     nextScript: 'Editorial Writing',
+    prevId: 'lumea',
+    prevScript: 'Lumea',
     images: imagesData.desserts.map((item) => ({
       src: allImages[`../assets/images/desserts/${item.file}`].default,
       width: item.width,
@@ -149,6 +157,7 @@ const folioLetters = [...'FOLIO'];
 ---
 
 <Layout title="Ishita Yadav — Portfolio 2026">
+  <a href="#app" class="skip-link">Skip to main content</a>
   <header>
     <a href="#home" class="brand-link" id="brand-link">
       <span class="back-arrow" aria-hidden="true">←</span>
@@ -172,21 +181,22 @@ const folioLetters = [...'FOLIO'];
             alt={heroMeta.alt}
             loading="eager"
             decoding="async"
+            fetchpriority="high"
           />
         </div>
-        <div class="ttl disp">
+        <h1 class="ttl disp" aria-label="Ishita Yadav, Portfolio 2026">
           <span class="by">By Ishita Yadav</span>
-          <span class="ln">
+          <span class="ln" aria-hidden="true">
             {portLetters.map((c, i) => (
               <span class="l" style={`--d: ${i};`}>{c}</span>
             ))}
           </span>
-          <span class="ln">
+          <span class="ln" aria-hidden="true">
             {folioLetters.map((c, i) => (
               <span class="l" style={`--d: ${i + 4};`}>{c}</span>
             ))}
           </span>
-        </div>
+        </h1>
       </section>
 
       <!-- Signature Stripe Divider -->
@@ -228,7 +238,7 @@ const folioLetters = [...'FOLIO'];
                   height={im.meta.height}
                   alt={im.meta.alt}
                   class:list={[{ on: j === 0 }]}
-                  loading="lazy"
+                  loading={j === 0 ? "eager" : "lazy"}
                   decoding="async"
                 />
               ))}
@@ -260,35 +270,80 @@ const folioLetters = [...'FOLIO'];
               </figure>
             ))}
           </div>
-          <a class="next rv" href={`#${proj.nextId}`}>
-            <span class="kick">Next project</span>
-            <b>{proj.nextScript}</b>
-          </a>
+          <div class="proj-nav rv">
+            <a class="prev" href={`#${proj.prevId}`}>
+              <span class="kick">Previous project</span>
+              <b>{proj.prevScript}</b>
+            </a>
+            <a class="next" href={`#${proj.nextId}`}>
+              <span class="kick">Next project</span>
+              <b>{proj.nextScript}</b>
+            </a>
+          </div>
         </section>
       </article>
     ))}
-
-    <!-- Footer -->
-    <footer>
-      <div class="footer-wrap">
-        <div class="footer-contact">
-          <a href="mailto:ishitayadav170@gmail.com" class="footer-link">ishitayadav170@gmail.com</a>
-          <span class="footer-sep">·</span>
-          <a href="tel:+918937999255" class="footer-link">+91 89379 99255</a>
-          <span class="footer-sep">·</span>
-          <a href="https://www.linkedin.com/in/ishita-yadav-968899277" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
-        </div>
-        <div>
-          <a href="/resume/Ishita-Yadav-Resume.pdf" target="_blank" rel="noopener noreferrer" class="footer-link">
-            Download Résumé ↓
-          </a>
-        </div>
-      </div>
-    </footer>
   </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-wrap">
+      <div class="footer-contact">
+        <a href="mailto:ishitayadav170@gmail.com" class="footer-link">ishitayadav170@gmail.com</a>
+        <span class="footer-sep">·</span>
+        <a href="tel:+918937999255" class="footer-link">+91 89379 99255</a>
+        <span class="footer-sep">·</span>
+        <a href="https://www.linkedin.com/in/ishita-yadav-968899277" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+      </div>
+      <div>
+        <a href="/resume/Ishita-Yadav-Resume.pdf" target="_blank" rel="noopener noreferrer" class="footer-link">
+          Download Résumé ↓
+        </a>
+      </div>
+    </div>
+  </footer>
 </Layout>
 
 <style>
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 22px;
+    z-index: 100;
+    padding: 8px 16px;
+    background: var(--ink);
+    color: var(--bg);
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: top 0.2s ease;
+  }
+
+  .skip-link:focus-visible {
+    top: calc(14px + env(safe-area-inset-top, 0px));
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--acc);
+    outline-offset: 3px;
+  }
+
+  #home,
+  #about,
+  #idx,
+  #app,
+  .pv {
+    scroll-margin-top: calc(56px + env(safe-area-inset-top, 0px));
+  }
+
+  .intro h2,
+  .row .t,
+  .big {
+    text-wrap: balance;
+  }
+
   header {
     position: fixed;
     top: 0;
@@ -297,12 +352,23 @@ const folioLetters = [...'FOLIO'];
     z-index: 5;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 12px;
     padding: calc(14px + env(safe-area-inset-top, 0px)) 22px 14px;
     color: #fff;
     mix-blend-mode: difference;
     text-transform: uppercase;
     font-size: 11px;
     letter-spacing: 0.05em;
+  }
+
+  /* Prevent long project label from colliding with brand name on narrow viewports */
+  #cur {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    max-width: 55%;
   }
 
   .brand-link {
@@ -312,6 +378,7 @@ const folioLetters = [...'FOLIO'];
     color: inherit;
     text-decoration: none;
     cursor: pointer;
+    flex-shrink: 0;
   }
 
   .back-arrow {
@@ -333,8 +400,51 @@ const folioLetters = [...'FOLIO'];
   }
 
   @media (hover: hover) {
+    /* Fix 1: strip hidden by default; clip-path wipe reveals cover when row is hovered */
+    .s {
+      clip-path: inset(0 100% 0 0);
+      transition: clip-path 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .row:hover .s {
+      clip-path: inset(0 0% 0 0);
+    }
+
     :global(:root[data-project]) .brand-link:hover .back-arrow {
       transform: translateX(-3px);
+    }
+
+    .about-resume-link:hover {
+      opacity: 0.75;
+    }
+
+    #idx.dim:hover .row:not(:hover) {
+      opacity: 0.3;
+    }
+
+    .row:hover:before {
+      transform: scaleX(1);
+    }
+
+    .row:hover .n {
+      color: var(--acc);
+    }
+
+    .row:hover .t {
+      transform: translateX(22px);
+      color: var(--acc);
+    }
+
+    .prev:hover b {
+      transform: translateX(18px);
+    }
+
+    .next:hover b {
+      transform: translateX(-18px);
+    }
+
+    .footer-link:hover {
+      color: var(--acc);
     }
   }
 
@@ -381,9 +491,9 @@ const folioLetters = [...'FOLIO'];
     left: 0;
     top: 0;
     width: 100%;
-    height: 125%;
+    height: 115%;
     object-fit: cover;
-    object-position: top center;
+    object-position: center;
     display: block;
     filter: grayscale(1) contrast(1.05);
     animation: scan 1.8s cubic-bezier(0.7, 0, 0.2, 1) both;
@@ -416,6 +526,8 @@ const folioLetters = [...'FOLIO'];
   }
 
   .ttl {
+    margin: 0;
+    font-weight: 500;
     align-self: end;
     text-align: right;
     padding: 0 22px 22px;
@@ -530,19 +642,13 @@ const folioLetters = [...'FOLIO'];
     display: inline-flex;
     align-items: center;
     border-bottom: 1px solid var(--acc);
-    padding-bottom: 2px;
-  }
-
-  .about-resume-link:hover {
-    opacity: 0.75;
+    /* 44 px minimum tap target */
+    padding-block: 16px;
+    margin-block: -16px;
   }
 
   #idx {
     display: block;
-  }
-
-  #idx.dim:hover .row:not(:hover) {
-    opacity: 0.3;
   }
 
   .row {
@@ -570,18 +676,10 @@ const folioLetters = [...'FOLIO'];
     transition: transform 0.7s cubic-bezier(0.7, 0, 0.2, 1);
   }
 
-  .row:hover:before {
-    transform: scaleX(1);
-  }
-
   .row .n {
     color: var(--mut);
     font-size: 12px;
     transition: color 0.3s;
-  }
-
-  .row:hover .n {
-    color: var(--acc);
   }
 
   .row .t {
@@ -591,14 +689,10 @@ const folioLetters = [...'FOLIO'];
     transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.3s;
   }
 
-  .row:hover .t {
-    transform: translateX(22px);
-    color: var(--acc);
-  }
-
   .row .s {
     position: relative;
-    height: clamp(70px, 11vw, 150px);
+    /* Raise the ceiling so tall viewports don't get a 3.6:1 sliver */
+    height: clamp(70px, 13vw, 200px);
     overflow: hidden;
   }
 
@@ -648,10 +742,13 @@ const folioLetters = [...'FOLIO'];
 
   .big {
     font-family: 'Pinyon Script', cursive;
-    font-size: clamp(60px, 14vw, 220px);
+    /* Floor raised to keep text readable; vw unit provides the smooth scale */
+    font-size: clamp(44px, 12vw, 220px);
     line-height: 1.1;
     color: var(--acc);
     margin: 8px 0 0;
+    /* Allow script words to wrap rather than overflow on narrow phones */
+    overflow-wrap: break-word;
     clip-path: inset(-20% 100% -20% 0);
     animation: wipe 1.3s 0.55s cubic-bezier(0.7, 0, 0.2, 1) forwards;
   }
@@ -687,27 +784,46 @@ const folioLetters = [...'FOLIO'];
     grid-column: span 12;
   }
 
+  /* Fix 2: every image in the layout project is full-width */
+  #proj-layout .g figure {
+    grid-column: span 12;
+  }
+
   .g :global(img) {
     width: 100%;
     height: auto;
     display: block;
   }
 
+  .proj-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 90px;
+    gap: 24px;
+  }
+
+  .prev,
   .next {
     display: block;
-    margin-top: 90px;
+  }
+
+  .prev {
+    text-align: left;
+  }
+
+  .next {
     text-align: right;
   }
 
+  .prev b,
   .next b {
     display: block;
-    font: 400 clamp(44px, 10vw, 150px) / 1.1 'Pinyon Script', cursive;
+    /* Floor lowered from 44 → 34px so long script titles don't overflow at 360 px */
+    font: 400 clamp(34px, 10vw, 150px) / 1.1 'Pinyon Script', cursive;
     color: var(--acc);
+    overflow-wrap: break-word;
     transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-
-  .next:hover b {
-    transform: translateX(-18px);
   }
 
   .rv {
@@ -739,11 +855,12 @@ const folioLetters = [...'FOLIO'];
   }
 
   .footer-link {
+    /* 44 px tap target: negative margin keeps visual spacing unchanged */
+    display: inline-flex;
+    align-items: center;
+    padding-block: 13px;
+    margin-block: -13px;
     transition: color 0.2s ease;
-  }
-
-  .footer-link:hover {
-    color: var(--acc);
   }
 
   .footer-contact {
@@ -757,7 +874,8 @@ const folioLetters = [...'FOLIO'];
     color: color-mix(in srgb, var(--ink) 30%, transparent);
   }
 
-  @media (max-width: 700px) {
+  /* Collapse intro to single column earlier — catches landscape phones (≈768 px wide) */
+  @media (max-width: 820px) {
     .intro {
       grid-template-columns: 1fr;
     }
@@ -765,6 +883,29 @@ const folioLetters = [...'FOLIO'];
     .intro h2 {
       order: 0;
       text-align: left;
+    }
+  }
+
+  @media (max-width: 700px) {
+    /* Collapse hero: image at natural ratio, title sits tight below — no 1fr stretch gap */
+    .hero {
+      min-height: unset;
+      grid-template-rows: auto auto;
+    }
+
+    .himg {
+      aspect-ratio: 1920 / 801;
+    }
+
+    /* Remove parallax oversizing — not needed at mobile widths */
+    .himg :global(img) {
+      height: 100%;
+    }
+
+    /* Tighter title padding below the image */
+    .ttl {
+      padding: 14px 14px 20px;
+      font-size: clamp(56px, 15vw, 80px);
     }
 
     .row {
@@ -792,8 +933,18 @@ const folioLetters = [...'FOLIO'];
       padding: calc(72px + env(safe-area-inset-top, 0px)) 16px 48px;
     }
 
-    .next {
+    .proj-nav {
       margin-top: 56px;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .prev {
+      text-align: left;
+    }
+
+    .next {
+      text-align: right;
     }
 
     .stripe {
@@ -828,6 +979,11 @@ const folioLetters = [...'FOLIO'];
 </style>
 
 <script>
+  // Pre-load and warm Pinyon Script immediately to eliminate FOUT font glitching
+  if ('fonts' in document) {
+    document.fonts.load('400 60px "Pinyon Script"');
+  }
+
   const meta: Record<string, { num: string; name: string }> = {
     editorial: { num: '01', name: 'Editorial Writing' },
     layout: { num: '02', name: 'Layout Design' },
@@ -944,6 +1100,9 @@ const folioLetters = [...'FOLIO'];
         brandLink.setAttribute('title', 'Back to home');
       }
     } else {
+      // Track whether we're returning from a project (homeView was hidden)
+      // vs. the initial page load (homeView was never hidden).
+      const returningHome = homeView ? homeView.hidden : false;
       if (homeView) homeView.hidden = false;
       projViews.forEach((pv) => {
         pv.hidden = true;
@@ -956,9 +1115,35 @@ const folioLetters = [...'FOLIO'];
         brandLink.removeAttribute('aria-label');
         brandLink.removeAttribute('title');
       }
+      // Only freeze on return — not on initial load, so the entrance animation plays normally.
+      // Mobile browsers replay CSS animations when display:none → block, causing a glitch.
+      if (returningHome) {
+        requestAnimationFrame(() => {
+          const heroImg = homeView?.querySelector<HTMLElement>('.himg img');
+          if (heroImg) {
+            heroImg.style.animation = 'none';
+            heroImg.style.clipPath = 'inset(0)';
+            heroImg.style.transform = '';
+            heroImg.style.translate = '0 0px';
+          }
+          const ttl = homeView?.querySelector<HTMLElement>('.ttl');
+          if (ttl) ttl.style.translate = '0 0px';
+        });
+      }
     }
 
-    window.scrollTo(0, 0);
+    if (!isProj && k && k !== 'home') {
+      const targetEl = document.getElementById(k);
+      if (targetEl) {
+        requestAnimationFrame(() => {
+          targetEl.scrollIntoView({ behavior: 'smooth' });
+        });
+      } else {
+        window.scrollTo(0, 0);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
     initObservers();
     initTilt();
 
@@ -976,7 +1161,21 @@ const folioLetters = [...'FOLIO'];
 
   function go(k: string) {
     if (busy) return;
-    const targetKey = ['editorial', 'layout', 'lumea', 'desserts'].includes(k) ? k : 'home';
+    const isTargetProj = ['editorial', 'layout', 'lumea', 'desserts'].includes(k);
+    const homeView = document.getElementById('view-home');
+    const isHomeActive = homeView && !homeView.hidden;
+
+    // In-page section link (e.g. #about, #idx, #home, #app) while already on home view: scroll smoothly without page transition
+    if (!isTargetProj && isHomeActive) {
+      const targetId = k === 'home' || !k ? 'home' : k;
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
+
+    const targetKey = isTargetProj ? k : 'home';
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) {
       switchView(targetKey);
@@ -1000,11 +1199,14 @@ const folioLetters = [...'FOLIO'];
     const timing: KeyframeAnimationOptions = { duration: 600, easing: 'cubic-bezier(.7,0,.2,1)', fill: 'forwards' };
     const delay = (i: number) => ((i * 7) % 16) * 26;
 
-    Promise.all(
-      elements.map((el, i) =>
+    const fontReady = 'fonts' in document ? document.fonts.load('400 60px "Pinyon Script"') : Promise.resolve();
+
+    Promise.all([
+      ...elements.map((el, i) =>
         el.animate([{ transform: 'scaleY(0)' }, { transform: 'scaleY(1)' }], { ...timing, delay: delay(i) }).finished
-      )
-    )
+      ),
+      fontReady,
+    ])
       .then(() => {
         switchView(targetKey);
         elements.forEach((el) => {
@@ -1028,7 +1230,16 @@ const folioLetters = [...'FOLIO'];
 
   // Initial load
   const initialKey = location.hash.replace('#', '');
-  switchView(initialKey);
+  if ('fonts' in document && ['editorial', 'layout', 'lumea', 'desserts'].includes(initialKey)) {
+    Promise.race([
+      document.fonts.load('400 60px "Pinyon Script"'),
+      new Promise((res) => setTimeout(res, 300)),
+    ]).then(() => {
+      switchView(initialKey);
+    });
+  } else {
+    switchView(initialKey);
+  }
 
   window.addEventListener('hashchange', () => {
     const k = location.hash.replace('#', '');
